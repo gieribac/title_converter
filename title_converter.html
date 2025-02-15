@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formato de Texto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input {
+            padding: 8px;
+            width: 60%;
+        }
+        button {
+            padding: 8px 15px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        p {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <input type="text" id="textoInput" placeholder="Escribe aquí...">
+    <button onclick="formatearTexto()">Formatear</button>
+    <p id="resultado"></p>
+
+    <script>
+        function formatearTexto() {
+            let inputTexto = document.getElementById("textoInput").value.trim();
+
+            if (inputTexto === "") {
+                alert("Por favor, ingresa un texto.");
+                return;
+            }
+
+            // Convertir todo a minúsculas
+            inputTexto = inputTexto.toLowerCase();
+
+            // Separar en palabras y aplicar formato
+            let palabras = inputTexto.split(" ").map((palabra, index) => {
+                if (index === 0 || palabra.length > 3) {
+                    return palabra.charAt(0).toUpperCase() + palabra.slice(1);
+                }
+                return palabra;
+            });
+
+            // Unir palabras formateadas en un solo string
+            let textoFormateado = palabras.join(" ");
+
+            // Mostrar resultado y limpiar input
+            document.getElementById("resultado").textContent = textoFormateado;
+            document.getElementById("textoInput").value = "";
+        }
+    </script>
+
+</body>
+</html>
